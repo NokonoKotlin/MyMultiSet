@@ -43,7 +43,7 @@ Copyright (c) 2024 NokonoKotlin Released under the MIT license(https://opensourc
 - C++ の `std::set` とは異なり、`Key` の重複を許す ( `Value` も当然重複 OK )。
 - `get(i)` や `[i]` で `i` 番目のノードのコピーを 0-index で取得。ただし隣接頂点へのアクセス (ポインタ) が封印されたものを返す。
 - `Delete(i)` で小さい順で `i` 番目の要素を削除する。
-- `GetRange(l,r)` は半開区間 `[l,r)` をカバーする部分木の根のコピーを返す。`get()` 同様に、隣接頂点のポインタは封印されている。
+- `GetRange(l,r)` は要素の辞書順の半開区間 `[l,r)` をカバーする部分木の根のコピーを返す。`get()` 同様に、隣接頂点のポインタは封印されている。
     - `GetRange(l,r).Sum_val` のようにして `[l,r)` の持つ要素のモノイド積を取得する
 
 #### (Key,Value) に関して以下の操作が可能
