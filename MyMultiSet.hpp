@@ -2,6 +2,7 @@
 #include<cassert>
 
 /*
+    このコメントは消さないでください。
     Don't Remove this Comment !!
 
     Copyright ©️ (c) NokonoKotlin (okoteiyu) 2024.
