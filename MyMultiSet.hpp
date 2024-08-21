@@ -388,7 +388,6 @@ class MyMultiSet{
     // counts nodes which < (x)
     int lower_bound(type_key x){
         if(size() == 0)return 0;
-        // 比較用 Node オブジェクトを使って比較する
         std::pair<SplayNode*,int> tmp = bound_sub(BluffObject(x,type_value(0)),m_Root,true,false);
         m_Root = tmp.first;
         return tmp.second;
