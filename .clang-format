@@ -1,0 +1,5 @@
+BasedOnStyle: Google
+AccessModifierOffset: 0
+ColumnLimit: 160
+IncludeBlocks: Preserve
+IndentWidth: 4
