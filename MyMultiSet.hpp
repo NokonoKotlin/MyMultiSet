@@ -24,6 +24,19 @@ class MyMultiSet{
 
         int SubTreeSize = 1;// Size of Subtree under this node
 
+        private:
+        bool copied_instance = false;
+        public:
+        SplayNode copy(){
+            assert(copied_instance == false);
+            SplayNode res = *this;
+            res.left = nullptr;
+            res.right = nullptr;
+            res.parent = nullptr;
+            res.copied_instance = true;
+            return res;
+        }
+
         SplayNode(){}
         SplayNode(type_key key_ , type_value val_){
             Key = key_;
@@ -88,6 +101,8 @@ class MyMultiSet{
 
         // update data member
         void update(){
+            assert(copied_instance == false);
+
             this->eval();
             this->SubTreeSize = 1;
             this->Sum_key = this->Key;
@@ -119,6 +134,7 @@ class MyMultiSet{
         // evaluate Lazy Evaluation
         void eval(){
             // if it's necessary , write here.
+            assert(copied_instance == false);
         }
     };
 
@@ -328,10 +344,7 @@ class MyMultiSet{
     SplayNode get(int i){
         assert(0 <= i && i < size());
         m_Root = get_sub(i,m_Root);
-        SplayNode res = (*m_Root);
-        // we cannot access adjacent nodes
-        res.right = res.left = res.parent = nullptr;
-        return res;
+        return m_Root->copy();
     }
 
     // get copy object node which covers interval [l,r)
@@ -340,9 +353,8 @@ class MyMultiSet{
         assert(0 <= l && l < r && r <= size());
         std::pair<SplayNode*,SplayNode*> tmp = split(r,m_Root);
         SplayNode* rightRoot = tmp.second;
-        tmp = split(l,tmp.first);
-        SplayNode res = (*tmp.second);
-        res.right = res.left = res.parent = nullptr;
+        tmp = split(l,tmp.first);// 部分木を取り出す。
+        SplayNode res = tmp.second->copy();
         m_Root = merge(merge(tmp.first,tmp.second),rightRoot);
         return res;
     }
@@ -436,7 +448,7 @@ class MyMultiSet{
         return lower_bound_pair(x,y);
     }
 
- 
+
     SplayNode back(){assert(size()>0);return get(size()-1);}
     SplayNode front(){assert(size()>0);return get(0);}
     void pop_back(){assert(size()>0);Delete(size()-1);}
