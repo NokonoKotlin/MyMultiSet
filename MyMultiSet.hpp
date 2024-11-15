@@ -382,14 +382,14 @@ class MyMultiSet{
         return;
     }
 
-    // erase element which has key_ as Key
+    // erase 1 element which has key_ as Key
     void erase(type_key key_){
         int it = find(key_);
         if(it!=-1)Delete(it);
         return;
     }
  
-    // erase element which has (key_,value_) as (Key,Value)
+    // erase 1 element which has (key_,value_) as (Key,Value)
     void erase_pair(type_key key_ , type_value val_){
         assert(_paired);
         int it = find_pair(key_ , val_);
